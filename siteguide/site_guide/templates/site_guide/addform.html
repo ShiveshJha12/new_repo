@@ -1,0 +1,33 @@
+{% extends 'site_guide/base.html' %}
+
+{% load static %}
+{% block content %}
+{% include 'site_guide/sidebar.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+        
+
+ 
+        
+
+      <!-- Page content -->
+      <div class="content "><br>
+        <h3><b>Add Vehicle</b></h3>
+
+          <form method="POST">
+            {% csrf_token %}
+              <input type="text" class="form-group form-control" placeholder="Name" name="name">
+              <input type="number" class="form-group form-control" placeholder="Speed" name="speed">
+              <input type="number" class="form-group form-control" placeholder="Temprature" name="temp">
+              <input type="number" class="form-group form-control" placeholder="Fuel Level" name="flevel">
+              <input type="text" class="form-group form-control" placeholder="Engine Status" name="estatus">
+              <button type="submit"  class="btn btn-success" >Submit</button>
+ 
+
+          </form>
+        
+         
+      </div>
+{% endblock content %}

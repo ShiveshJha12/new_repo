@@ -1,0 +1,153 @@
+{% extends 'site_guide/base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'site_guide/sidebar.html' %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+        
+
+ 
+        
+
+      <!-- Page content -->
+      <div class="content ">
+
+            <div class="p-5" style="background-color: lightgray;">
+  
+            </div><br>
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-3">
+                            <div  style="background-color: black;text-align: center;border: 1px solid black;border-radius: 50%;">
+                                <p>1</p>
+                                </div>
+
+        
+                        </div>
+                        <div class="col-3">
+                            <div  style="background-color: black;color: white;text-align: center;">
+                                <p class="p-3">Camera 1</p>
+                                </div>
+
+                            
+                        </div>
+                        <div class="col-3">
+                            <div  style="background-color: black;color: white;text-align: center;">
+                                <p class="p-3">Camera 2</p>
+                                </div>
+
+                            
+                        </div>
+        
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-6">
+                            {% if start == 1 %}
+                            <button class="p-3" style="background-color: green;text-align: center;color: white;width: 100%;"  >ON</button>
+                            {% else %}
+                            <button class="p-3" style="border: 2px solid green;text-align: center;width: 100%;color: green;background-color: white;" type="submit" onclick="start(
+                                {{v.id}})
+                                ;"><b>ON</b></button>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="col-6">
+                            {% if start == 1 %}
+                            <button class="p-3" style="border: 2px solid red;text-align: center;width: 100%;background-color: white;color: red;" type="submit" onclick="start(
+                                {{v.id}})
+                                ;"  ><b>OFF</b></button>
+                            {% else %}
+                            <button class="p-3" style="background-color: red;text-align: center;width: 100%;color: white;" >OFF</button>
+                            {% endif %}
+                        </div>
+                    </div>               
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div >
+                        <img src="https://assets-global.website-files.com/6050a76fa6a633d5d54ae714/609147088669907f652110b0_report-an-issue(about-maps).jpeg" style="height: 250px;width: 100%;" class="img-fluid p-2 " alt="">
+    
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="p-3" style="background-color: lightgray;border-radius: 10px;">
+                        <h5>Speed</h5>
+                        <h3>{{v.speed}}</h3>
+                        </div><br>
+                        <div class="p-3" style="background-color: lightgray;border-radius: 10px;">
+                            <h5>Average Speed</h5>
+                            <h3>78</h3>
+                            </div>
+                    
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-4">
+                    <div class="p-3" style="background-color: lightgray;border-radius: 10px;">
+                    <h5>Engine Status</h5>
+                    <h3>{{v.engine_status}}</h3>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="p-3" style="background-color: lightgray;border-radius: 10px;">
+                        <h5>Fuel Level</h5>
+                        <h3>{{v.fuel_level}}</h3>
+                        </div>
+                    
+                </div>
+                <div class="col-4">
+                    <div class="p-3" style="background-color: lightgray;border-radius: 10px;">
+                        <h5>Temprature</h5>
+                        <h3>{{v.temp}}</h3>
+                        </div>
+                    
+                </div>
+            </div>
+          
+        
+         
+      </div>
+
+
+      <script>
+    function start(v_id){
+    event.preventDefault();
+    // var cid = $(this).attr('value');
+    // var jid = 
+    $.ajax({
+      type:'GET',
+      url:'{% url "start" %}',
+      data:{'vid': v_id,
+
+      },
+      // beforeSend:function(xhr){
+      //   $('#button' + pk).html('<small>Almost done...</small>');
+      // },
+      success:function(response){
+        
+          
+          location.reload();
+      },
+      error:function(response){
+        alert("Error");
+      }
+
+    });
+
+  }
+      </script>
+{% endblock content %}
